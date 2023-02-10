@@ -17,7 +17,7 @@ namespace ProductService.WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet(ProductApiEndpoints.GetProductById)]
+        [HttpGet(ProductApiEndpoints.GetProductById + "/{id}")]
         public async Task<IActionResult> GetProductByIdAsync([FromRoute] string id)
         {
             GetProductByIdRequestModel request = new GetProductByIdRequestModel
