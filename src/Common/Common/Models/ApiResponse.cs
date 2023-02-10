@@ -1,13 +1,13 @@
 ﻿namespace Common.Models
 {
-    public class ApiModel<T> where T : class
+    public class ApiResponse<T> where T : class
     {
         public bool IsResult { get; set; }
         public string Message { get; set; }
         public T Data { get; set; }
     }
 
-    public class ApiSearchModel<T> where T : class
+    public class ApiSearchResponse<T> where T : class
     {
         public bool IsResult { get; set; }
         public string Message { get; set; }
