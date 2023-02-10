@@ -1,4 +1,6 @@
-﻿@page "/detail"
+﻿@page "/detail/{Id}"
+
+<PageTitle>@Product.ProductName</PageTitle>
 
 <!-- Shop Detail Start -->
 <div class="container-fluid pb-5">
@@ -382,3 +384,21 @@
     </div>
 </div>
 <!-- Products End -->
+
+@code{
+    [Parameter]
+    public Guid Id { get; set; }
+
+    public Product Product { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        Product = new Product
+            {
+                Id = this.Id,
+                ProductName = "Test"
+            };
+
+        return base.OnInitializedAsync();
+    }
+}
