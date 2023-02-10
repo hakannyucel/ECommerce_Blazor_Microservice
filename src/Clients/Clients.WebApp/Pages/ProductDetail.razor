@@ -387,7 +387,7 @@
 
 @code{
     [Parameter]
-    public Guid Id { get; set; }
+    public string Id { get; set; }
 
     public Product Product { get; set; }
 
@@ -395,7 +395,7 @@
     {
         Product = new Product
             {
-                Id = this.Id,
+                Id = Guid.Parse(Id),
                 ProductName = "Test"
             };
 
