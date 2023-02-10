@@ -1,6 +1,6 @@
 ﻿using Common.Persistence.Entities;
 
-namespace ProductService.Domain
+namespace ProductService.Domain.Entities
 {
     public class Product : Entity
     {
