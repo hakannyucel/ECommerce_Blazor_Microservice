@@ -1,6 +1,5 @@
 ﻿using Common.Persistence.Entities;
 using Common.Persistence.Repositories;
-using Common.Persistence.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
@@ -17,14 +16,13 @@ namespace Common.Persistence
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
             BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
 
-            var serviceSettings = configuration.GetSection(nameof(ServiceSettings)) as ServiceSettings;
-
             services.AddSingleton(serviceProvider =>
             {
-                var mongoDbSettings = configuration.GetSection(nameof(MongoDbSettings)) as MongoDbSettings;
-                var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
+                string mongoDbConnStr = configuration["MongoDbSettings:ConnectionString"];
+                var mongoClient = new MongoClient(mongoDbConnStr);
 
-                return mongoClient.GetDatabase(serviceSettings.ServiceName);
+                string serviceName = configuration["ServiceSettings:ServiceName"];
+                return mongoClient.GetDatabase(serviceName);
             });
 
             return services;

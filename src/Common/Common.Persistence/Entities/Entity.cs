@@ -5,8 +5,6 @@ namespace Common.Persistence.Entities
 {
     public class Entity
     {
-        [BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-
         public Guid Id { get; set; }
 
         public Entity()
