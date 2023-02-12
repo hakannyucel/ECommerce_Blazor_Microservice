@@ -22,7 +22,7 @@ namespace Common.Persistence.Repositories
             return entity;
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(string id)
         {
             FilterDefinition<T> filter = filterBuilder.Eq(x => x.Id, id);
             await _collection.DeleteOneAsync(filter);
@@ -46,7 +46,7 @@ namespace Common.Persistence.Repositories
 
         public async Task<PageableModel<T>> GetAllAsync(Expression<Func<T, bool>> filter, int size = 50, int page = 0)
         {
-            var list = await _collection.Find(filter).ToListAsync();
+            var list = await _collection.Find(filter ?? filterBuilder.Empty).ToListAsync();
             return new PageableModel<T>
             {
                 Data = list,
@@ -59,7 +59,7 @@ namespace Common.Persistence.Repositories
             };
         }
 
-        public async Task<T> GetAsync(Guid id)
+        public async Task<T> GetAsync(string id)
         {
             FilterDefinition<T> filter = filterBuilder.Eq(x => x.Id, id);
             return await _collection.Find(filter).FirstOrDefaultAsync();

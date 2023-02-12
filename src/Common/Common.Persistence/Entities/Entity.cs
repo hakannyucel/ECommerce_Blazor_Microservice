@@ -5,13 +5,15 @@ namespace Common.Persistence.Entities
 {
     public class Entity
     {
-        public Guid Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
 
         public Entity()
         {
         }
 
-        public Entity(Guid id) : this()
+        public Entity(string id) : this()
         {
             Id = id;
         }
