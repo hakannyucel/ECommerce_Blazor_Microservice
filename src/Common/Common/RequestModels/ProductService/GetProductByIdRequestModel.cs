@@ -6,6 +6,6 @@ namespace Common.RequestModels.ProductService
 {
     public class GetProductByIdRequestModel : IRequest<ApiResponse<GetProductByIdResponseModel>>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

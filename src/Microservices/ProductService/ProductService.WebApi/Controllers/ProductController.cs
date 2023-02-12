@@ -17,12 +17,25 @@ namespace ProductService.WebApi.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet(ProductApiEndpoints.GetAllProducts)]
+        public async Task<IActionResult> GetAllProductsAsync()
+        {
+            GetAllProductsRequestModel request = new GetAllProductsRequestModel();
+
+            ApiSearchResponse<GetAllProductsResponseModel> result = await _mediator.Send(request);
+
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
         [HttpGet(ProductApiEndpoints.GetProductById + "/{id}")]
         public async Task<IActionResult> GetProductByIdAsync([FromRoute] string id)
         {
             GetProductByIdRequestModel request = new GetProductByIdRequestModel
             {
-                Id = Guid.Parse(id)
+                Id = id
             };
 
             ApiResponse<GetProductByIdResponseModel> result = await _mediator.Send(request);

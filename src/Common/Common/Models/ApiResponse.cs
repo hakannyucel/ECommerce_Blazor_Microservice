@@ -9,8 +9,9 @@
 
     public class ApiSearchResponse<T> where T : class
     {
-        public bool IsResult { get; set; }
+        public bool IsSuccess { get; set; }
         public string Message { get; set; }
+        public PageableModel<T> Data { get; set; }
     }
 
     public class PageableModel<T> where T : class
