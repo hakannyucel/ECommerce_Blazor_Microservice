@@ -2,7 +2,7 @@
 {
     public class GetProductByIdResponseModel
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public string ShortDescription { get; set; }

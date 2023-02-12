@@ -2,8 +2,9 @@
 using Common.RequestModels.ProductService;
 using Common.ResponseModels;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProductService.Application.Features.Commands;
+using ProductService.Application.Features.Queries;
 
 namespace ProductService.WebApi.Controllers
 {
@@ -18,11 +19,18 @@ namespace ProductService.WebApi.Controllers
         }
 
         [HttpGet(ProductApiEndpoints.GetAllProducts)]
-        public async Task<IActionResult> GetAllProductsAsync()
+        public async Task<IActionResult> GetAllProductsAsync([FromQuery] GetAllProductsRequestModel request)
         {
-            GetAllProductsRequestModel request = new GetAllProductsRequestModel();
+            GetAllProductsQuery query = new GetAllProductsQuery 
+            { 
+                PageRequest = new PageRequest 
+                { 
+                    Page = request.Page,
+                    Size = request.Size
+                } 
+            };
 
-            ApiSearchResponse<GetAllProductsResponseModel> result = await _mediator.Send(request);
+            ApiSearchResponse<GetAllProductsResponseModel> result = await _mediator.Send(query);
 
             if (!result.IsSuccess)
                 return BadRequest(result);
@@ -31,14 +39,23 @@ namespace ProductService.WebApi.Controllers
         }
 
         [HttpGet(ProductApiEndpoints.GetProductById + "/{id}")]
-        public async Task<IActionResult> GetProductByIdAsync([FromRoute] string id)
+        public async Task<IActionResult> GetProductByIdAsync([FromRoute] GetProductByIdRequestModel request)
         {
-            GetProductByIdRequestModel request = new GetProductByIdRequestModel
-            {
-                Id = id
-            };
+            GetProductByIdQuery query = new GetProductByIdQuery { Id = request.Id };
+            ApiResponse<GetProductByIdResponseModel> result = await _mediator.Send(query);
 
-            ApiResponse<GetProductByIdResponseModel> result = await _mediator.Send(request);
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpPost(ProductApiEndpoints.AddNewProduct)]
+        public async Task<IActionResult> AddNewProductAsync([FromBody] AddNewProductRequestModel request)
+        {
+            AddNewProductCommand command = new AddNewProductCommand { ProductName = request.ProductName };
+
+            ApiResponse<AddNewProductResponseModel> result = await _mediator.Send(command);
 
             if (!result.IsSuccess)
                 return BadRequest(result);

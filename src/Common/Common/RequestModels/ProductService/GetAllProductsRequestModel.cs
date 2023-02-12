@@ -4,7 +4,9 @@ using MediatR;
 
 namespace Common.RequestModels.ProductService
 {
-    public class GetAllProductsRequestModel : IRequest<ApiSearchResponse<GetAllProductsResponseModel>>
+    public class GetAllProductsRequestModel
     {
+        public int Size { get; set; }
+        public int Page { get; set; }
     }
 }
