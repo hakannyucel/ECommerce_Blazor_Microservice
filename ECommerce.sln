@@ -19,11 +19,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clients.WebApp", "src\Clien
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductService", "ProductService", "{D8D83B80-F551-48DA-ABF2-961FADD0F4BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Domain", "src\Microservices\ProductService\ProductService.Domain\ProductService.Domain.csproj", "{656DA4CF-850A-428E-B917-E93EF6DA0A12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.Domain", "src\Microservices\ProductService\ProductService.Domain\ProductService.Domain.csproj", "{656DA4CF-850A-428E-B917-E93EF6DA0A12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Application", "src\Microservices\ProductService\ProductService.Application\ProductService.Application.csproj", "{6C558642-0142-461F-9B6F-98498F42D559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.Application", "src\Microservices\ProductService\ProductService.Application\ProductService.Application.csproj", "{6C558642-0142-461F-9B6F-98498F42D559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.WebApi", "src\Microservices\ProductService\ProductService.WebApi\ProductService.WebApi.csproj", "{B82BFB03-3331-44BB-A96B-6109104308BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService.WebApi", "src\Microservices\ProductService\ProductService.WebApi\ProductService.WebApi.csproj", "{B82BFB03-3331-44BB-A96B-6109104308BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1F0E793C-606F-429A-A2F7-7A6B9B932816}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
