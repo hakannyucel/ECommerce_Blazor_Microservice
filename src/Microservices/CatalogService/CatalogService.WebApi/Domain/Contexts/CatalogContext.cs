@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CatalogService.WebApi.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace CatalogService.WebApi.Domain.Contexts
@@ -9,16 +10,11 @@ namespace CatalogService.WebApi.Domain.Contexts
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost;Initial Catalog=CatalogDb;Integrated Security=true");
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-
+        public DbSet<CatalogItem> CatalogItems { get; set; }
     }
 }
