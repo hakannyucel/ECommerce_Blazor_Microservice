@@ -14,11 +14,11 @@ namespace ProductService.Application.Features.Commands
 
         public class AddNewProductCommandHandler : IRequestHandler<AddNewProductCommand, ApiResponse<AddNewProductResponseModel>>
         {
-            private readonly IRepository<Product> _productRepository;
+            private readonly IMongoRepository<Product> _productRepository;
             private readonly IMapper _mapper;
             private readonly ILogger<AddNewProductCommandHandler> _logger;
 
-            public AddNewProductCommandHandler(IRepository<Product> productRepository, IMapper mapper, ILogger<AddNewProductCommandHandler> logger)
+            public AddNewProductCommandHandler(IMongoRepository<Product> productRepository, IMapper mapper, ILogger<AddNewProductCommandHandler> logger)
             {
                 _productRepository = productRepository;
                 _mapper = mapper;

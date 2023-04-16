@@ -14,11 +14,11 @@ namespace ProductService.Application.Features.Queries
 
         public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ApiResponse<GetProductByIdResponseModel>>
         {
-            private readonly IRepository<Product> _productRepository;
+            private readonly IMongoRepository<Product> _productRepository;
             private readonly IMapper _mapper;
             private readonly ILogger<GetProductByIdQueryHandler> _logger;
 
-            public GetProductByIdQueryHandler(IRepository<Product> productRepository, IMapper mapper, ILogger<GetProductByIdQueryHandler> logger)
+            public GetProductByIdQueryHandler(IMongoRepository<Product> productRepository, IMapper mapper, ILogger<GetProductByIdQueryHandler> logger)
             {
                 _productRepository = productRepository;
                 _mapper = mapper;

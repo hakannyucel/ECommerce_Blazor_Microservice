@@ -2,7 +2,7 @@
 
 namespace ProductService.Domain.Entities
 {
-    public class Product : Entity
+    public class Product : MongoEntity
     {
         public string ProductName { get; set; }
         public decimal Price { get; set; }
