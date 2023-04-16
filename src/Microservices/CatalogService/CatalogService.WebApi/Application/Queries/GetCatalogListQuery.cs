@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CatalogService.WebApi.ApiModels.ResponseModels;
+using CatalogService.ApiModels.ResponseModels;
 using CatalogService.WebApi.Domain.Contexts;
 using Common.Responses;
 using MediatR;

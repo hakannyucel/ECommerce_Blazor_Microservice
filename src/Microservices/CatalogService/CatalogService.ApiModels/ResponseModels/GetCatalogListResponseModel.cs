@@ -1,4 +1,4 @@
-﻿namespace CatalogService.WebApi.ApiModels.ResponseModels
+﻿namespace CatalogService.ApiModels.ResponseModels
 {
     public class GetCatalogListResponseModel
     {

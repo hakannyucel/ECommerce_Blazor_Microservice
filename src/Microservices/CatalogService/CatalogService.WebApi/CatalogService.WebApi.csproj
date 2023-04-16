@@ -29,13 +29,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ApiModels\RequestModels\" />
     <Folder Include="Domain\Configurations\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Common.Persistence\Common.Persistence.csproj" />
     <ProjectReference Include="..\..\..\Common\Common\Common.csproj" />
+    <ProjectReference Include="..\CatalogService.ApiModels\CatalogService.ApiModels.csproj" />
   </ItemGroup>
 
 </Project>
