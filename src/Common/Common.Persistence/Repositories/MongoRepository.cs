@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Common.Persistence.Repositories
 {
-    public class MongoRepository<T> : IRepository<T> where T : Entity
+    public class MongoRepository<T> : IMongoRepository<T> where T : MongoEntity
     {
         private readonly IMongoCollection<T> _collection;
         private readonly FilterDefinitionBuilder<T> filterBuilder = Builders<T>.Filter;

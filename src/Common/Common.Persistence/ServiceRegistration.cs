@@ -29,9 +29,9 @@ namespace Common.Persistence
         }
 
         public static IServiceCollection AddMongoRepository<T>(this IServiceCollection services, string collectionName)
-            where T : Entity
+            where T : MongoEntity
         {
-            services.AddSingleton<IRepository<T>>(serviceProvider =>
+            services.AddSingleton<IMongoRepository<T>>(serviceProvider =>
             {
                 var database = serviceProvider.GetService<IMongoDatabase>();
 
