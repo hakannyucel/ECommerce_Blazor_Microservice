@@ -1,6 +1,9 @@
-﻿using CatalogService.WebApi.ApiModels.ResponseModels;
+﻿using AutoMapper;
+using CatalogService.WebApi.ApiModels.ResponseModels;
+using CatalogService.WebApi.Domain.Contexts;
 using Common.Responses;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace CatalogService.WebApi.Application.Queries
 {
@@ -8,9 +11,20 @@ namespace CatalogService.WebApi.Application.Queries
     {
         public class GetCatalogListQueryHandler : IRequestHandler<GetCatalogListQuery, Response<List<GetCatalogListResponseModel>>>
         {
-            public Task<Response<List<GetCatalogListResponseModel>>> Handle(GetCatalogListQuery request, CancellationToken cancellationToken)
+            private readonly CatalogContext _context;
+            private readonly IMapper _mapper;
+
+            public GetCatalogListQueryHandler(CatalogContext context, IMapper mapper)
             {
-                throw new NotImplementedException();
+                _context = context;
+                _mapper = mapper;
+            }
+
+            public async Task<Response<List<GetCatalogListResponseModel>>> Handle(GetCatalogListQuery request, CancellationToken cancellationToken)
+            {
+                var catalogItems = await _context.CatalogItems.ToListAsync();
+                var mappedCatalogItems = _mapper.Map<List<GetCatalogListResponseModel>>(catalogItems);
+                return new Response<List<GetCatalogListResponseModel>>(true, "Successful", mappedCatalogItems);
             }
         }
     }
