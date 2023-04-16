@@ -1,4 +1,6 @@
-﻿<!-- Navbar Start -->
+﻿@inject HttpClient Http
+
+<!-- Navbar Start -->
 <div class="container-fluid bg-dark mb-30">
     <div class="row px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
@@ -16,15 +18,10 @@
                             <a href="" class="dropdown-item">Baby's Dresses</a>
                         </div>
                     </div>
-                    <a href="" class="nav-item nav-link">Shirts</a>
-                    <a href="" class="nav-item nav-link">Jeans</a>
-                    <a href="" class="nav-item nav-link">Swimwear</a>
-                    <a href="" class="nav-item nav-link">Sleepwear</a>
-                    <a href="" class="nav-item nav-link">Sportswear</a>
-                    <a href="" class="nav-item nav-link">Jumpsuits</a>
-                    <a href="" class="nav-item nav-link">Blazers</a>
-                    <a href="" class="nav-item nav-link">Jackets</a>
-                    <a href="" class="nav-item nav-link">Shoes</a>
+                    @foreach (var catalogItem in CatalogItems)
+                    {
+                        <a href="" class="nav-item nav-link">@catalogItem.Name</a>
+                    }
                 </div>
             </nav>
         </div>
@@ -68,3 +65,16 @@
 </div>
 <!-- Navbar End -->
 
+@code {
+    private List<GetCatalogListResponseModel> CatalogItems;
+    private readonly string CatalogApiUrl = "https://localhost:7185";
+
+    private async Task GetCatalogItems()
+    {
+        var apiResponse = await Http.GetFromJsonAsync<Response<List<GetCatalogListResponseModel>>>($"{CatalogApiUrl}/api/CatalogItem/GetCatalogItemList");
+
+        CatalogItems = apiResponse?.Data;
+    }
+
+    protected override async Task OnInitializedAsync() => await GetCatalogItems();
+}
